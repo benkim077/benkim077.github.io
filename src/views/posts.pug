@@ -1,28 +1,11 @@
-- const SITE_NAME = "Ben의 기술 블로그"
+include includes/locals.pug
 
 doctype html
 html(lang="ko-KR")
-  head
-    meta(charset="UTF-8")
-    meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    title= title
-    meta(name="Description" content=description)
-    meta(property="og:image" content=ogImage)
-    meta(property="og:title" content=title)
-    meta(property="og:description" content=description)
-    meta(property="og:url" content=ogURL)
-    meta(property="og:locale" content="ko_KR")
-    meta(property="og:site_name" content=SITE_NAME)
-    meta(property="og:type" content="website")
+  include includes/head.pug
   body
-    h1= SITE_NAME
-    nav 
-      ul
-        li
-          a(href="/")="About"
-        li
-          a(href="/posts")="Posts"
-    //- DB에 있는 내용을 가져와서 보여준다.
+    include includes/header.pug
+    //- TODO: DB에 있는 내용을 가져와서 보여준다.
     h2= pageTitle
     ul
       each post in posts
@@ -30,3 +13,4 @@ html(lang="ko-KR")
           a(href=post.title)
             h3= post.title
             p= post.summary
+    include includes/footer.pug

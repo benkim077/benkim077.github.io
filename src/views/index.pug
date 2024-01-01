@@ -1,32 +1,14 @@
-//- 템플릿 인자 목록 : title, description, ogImage, ogURL, body
-- const SITE_NAME = "Ben의 기술 블로그"
+include includes/locals.pug
 
 doctype html
 html(lang="ko-KR")
-  head
-    meta(charset="UTF-8")
-    meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    title= title
-    meta(name="Description" content=description)
-    meta(property="og:image" content=ogImage)
-    meta(property="og:title" content=title)
-    meta(property="og:description" content=description)
-    meta(property="og:url" content=ogURL)
-    meta(property="og:locale" content="ko_KR")
-    meta(property="og:site_name" content=SITE_NAME)
-    meta(property="og:type" content="website")
+  include includes/head.pug
   body
-    h1= SITE_NAME
-    nav 
-      ul
-        li
-          a(href="/")="About"
-        li
-          a(href="/posts")="Posts"
-    //- TODO: 모든 템플릿이 여기부터만 다르면 될 것 같은데
+    include includes/header.pug
     h2="소개"
     p= description
     h2="SNS"
       ul
         li
           a(href="https://github.com/benkim077" target="_blank")= "github"
+    include includes/footer.pug
