@@ -1,4 +1,3 @@
-//- 템플릿 인자 목록 : title, description, ogImage, ogURL, body
 - const SITE_NAME = "Ben의 기술 블로그"
 
 doctype html
@@ -23,10 +22,11 @@ html(lang="ko-KR")
           a(href="/")="About"
         li
           a(href="/posts")="Posts"
-    //- TODO: 모든 템플릿이 여기부터만 다르면 될 것 같은데
-    h2="소개"
-    p= description
-    h2="SNS"
-      ul
+    //- DB에 있는 내용을 가져와서 보여준다.
+    h2= pageTitle
+    ul
+      each post in posts
         li
-          a(href="https://github.com/benkim077" target="_blank")= "github"
+          a(href=post.title)
+            h3= post.title
+            p= post.summary
