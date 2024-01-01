@@ -10,7 +10,10 @@ html(lang="ko-KR")
     ul
       each post in posts
         li
-          a(href=post.title)
+          a(href=post.slug)
             h3= post.title
             p= post.summary
+            ul
+              each tag in post.tags
+                li= tag
     include includes/footer.pug
