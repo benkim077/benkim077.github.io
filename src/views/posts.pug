@@ -11,7 +11,7 @@ html(lang="ko-KR")
       each post in posts
         - const year = String(post.created_at.getFullYear());
         - const month = String(post.created_at.getMonth() + 1).padStart(2, "0");
-        - const date = String(post.created_at.getDate());
+        - const date = String(post.created_at.getDate()).padStart(2, "0");
         li
           a(href="posts/"+post.slug)
             article

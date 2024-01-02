@@ -1,6 +1,6 @@
 import express from "express";
-import aboutRouter from "./router/about";
-import postsRouter from "./router/posts";
+import { aboutRouter } from "./router/about";
+import { postsRouter } from "./router/posts";
 
 const app = express();
 const port = 3000;
