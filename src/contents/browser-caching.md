@@ -3,7 +3,7 @@ slug: unleashing-the-potential-of-browser-caching
 title: Unleashing the Potential of Browser Caching
 summary: Optimizing web performance is vital for frontend developers, and one key tool in achieving this is browser caching. This post explores the basics, implementation, and best practices.
 tags: ["web browser", "cache", "optimization"]
-created_at: 2024-01-01T12:08:55.347Z
+created_at: 2024-01-01T20:08:55.347Z
 ---
 
 ## Understanding Browser Caching

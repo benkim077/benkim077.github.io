@@ -5,15 +5,20 @@ html(lang="ko-KR")
   include includes/head.pug
   body
     include includes/header.pug
-    //- TODO: DB에 있는 내용을 가져와서 보여준다.
     h2= pageTitle
+    p= description
     ul
       each post in posts
+        - const year = String(post.created_at.getFullYear());
+        - const month = String(post.created_at.getMonth() + 1).padStart(2, "0");
+        - const date = String(post.created_at.getDate());
         li
-          a(href=post.slug)
-            h3= post.title
-            p= post.summary
-            ul
-              each tag in post.tags
-                li= tag
+          a(href="posts/"+post.slug)
+            article
+              h3= post.title
+              p= post.summary
+              time(datetime=post.created_at) #{year}/#{month}/#{date}
+          //- ul
+          //-   each tag in post.tags
+          //-     li= tag
     include includes/footer.pug

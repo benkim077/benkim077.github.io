@@ -3,7 +3,7 @@ slug: mastering-aynchronous-programming-in-javascript
 title: Mastering Asynchronous Programming in JavaScript
 summary: As a junior frontend developer, delving into asynchronous programming in JavaScript is key to creating dynamic and responsive web applications. Let's break down the essentials.
 tags: ["javascript", "asynchronous"]
-created_at: 2024-01-01T12:08:55.347Z
+created_at: 2023-05-01T12:15:55.347Z
 ---
 
 ## Asynchronous Basics
