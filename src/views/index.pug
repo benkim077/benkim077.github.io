@@ -1,0 +1,14 @@
+include includes/locals.pug
+
+doctype html
+html(lang="ko-KR")
+  include includes/head.pug
+  body
+    include includes/header.pug
+    h2="소개"
+    p= description
+    h3="SNS"
+      ul
+        li
+          a(href="https://github.com/benkim077" target="_blank")= "github"
+    include includes/footer.pug
