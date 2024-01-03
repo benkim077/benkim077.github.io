@@ -16,3 +16,4 @@ html(lang="ko-KR")
         - const date = String(created_at.getDate()).padStart(2, "0");
         time(datetime=created_at) #{year}/#{month}/#{date}
         div !{content}
+    include includes/footer.pug
