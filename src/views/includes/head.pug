@@ -1,11 +1,10 @@
 head
   meta(charset="UTF-8")
   meta(name="viewport" content="width=device-width, initial-scale=1.0")
-  #title 
-    if !title
-      title Ben의 기술 블로그
-    else
-      title #{title} - Ben의 기술 블로그
+  if !title
+    title Ben의 기술 블로그
+  else
+    title #{title} - Ben의 기술 블로그
   meta(name="Description" content=description)
   meta(property="og:image" content=ogImage)
   meta(property="og:title" content=title)
