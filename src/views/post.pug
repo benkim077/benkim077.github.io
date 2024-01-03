@@ -5,13 +5,14 @@ html(lang="ko-KR")
   include includes/head.pug
   body
     include includes/header.pug
-    h2= pageTitle
-    article
-      ul 
-        each tag in tags 
-          li= tag
-      - const year = String(created_at.getFullYear());
-      - const month = String(created_at.getMonth() + 1).padStart(2, "0");
-      - const date = String(created_at.getDate()).padStart(2, "0");
-      time(datetime=created_at) #{year}/#{month}/#{date}
-      div= content
+    main 
+      article
+        h2= pageTitle
+        ul 
+          each tag in tags 
+            li= tag
+        - const year = String(created_at.getFullYear());
+        - const month = String(created_at.getMonth() + 1).padStart(2, "0");
+        - const date = String(created_at.getDate()).padStart(2, "0");
+        time(datetime=created_at) #{year}/#{month}/#{date}
+        div !{content}
