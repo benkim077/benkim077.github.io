@@ -51,7 +51,7 @@ async function buildMarkdownFiles() {
     const postFile = await readFile(`${SRC}/${CONTENTS}/${file}`);
     // TODO: data의 Type 설정은 어떻게 해야 하는가?
     const { data, content } = matter(postFile.toString());
-    const converter = new Showdown.Converter();
+    const converter = new Showdown.Converter({ headerLevelStart: 3 });
     const post = {
       ...data,
       content: converter.makeHtml(content),
