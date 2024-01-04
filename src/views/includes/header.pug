@@ -1,8 +1,8 @@
-header
-  h1.font-bold.text-4xl= site.title
-  nav 
-    ul
+header.py-5
+  h1= site.title
+  nav
+    ul.text-lg.font-medium.flex.gap-4.list-none
       li
-        a.(href="/")="About"
+        a(href="/")="About"
       li
         a(href="/posts")="Posts"

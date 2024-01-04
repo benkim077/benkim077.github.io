@@ -1,13 +1,16 @@
 doctype html
-html(lang="ko-KR")
+html.bg-background-dark.text-font-white(lang="ko-KR")
   include includes/head.pug
   body
-    include includes/header.pug
-    main 
-      h2="소개"
-      p="반갑습니다. 웹 프론트엔드 개발자 Ben입니다."
-      h3="SNS"
-        ul
-          li
-            a(href="https://github.com/benkim077" target="_blank")= "Github"
-    include includes/footer.pug
+    div#wrapper
+      include includes/header.pug
+      main.mb-auto
+        div.border-b.border-gray-400.py-1.border-gray-400
+          h2="소개"
+          p="반갑습니다. 웹 프론트엔드 개발자 Ben입니다."
+        div.pt-8
+          h3="SNS"
+          ul
+            li
+              a(href="https://github.com/benkim077" target="_blank")= "Github"
+      include includes/footer.pug

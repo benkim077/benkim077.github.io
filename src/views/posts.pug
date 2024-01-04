@@ -1,25 +1,27 @@
 doctype html
-html(lang="ko-KR")
+html.bg-background-dark.text-font-white(lang="ko-KR")
   include includes/head.pug
   body
-    include includes/header.pug
-    main 
-      h2="글 목록"
-      p= "프론트엔드 개발에 필요한 내용을 공유합니다."
-      ul
-        each post in posts
-          - const year = String(post.created_at.getFullYear());
-          - const month = String(post.created_at.getMonth() + 1).padStart(2, "0");
-          - const date = String(post.created_at.getDate()).padStart(2, "0");
-          li
-            article
-              a(href="posts/"+post.slug)
-                main
-                  h3= post.title
-                  p= post.summary
-                  time(datetime=post.created_at) #{new Intl.DateTimeFormat('ko-KR', { dateStyle: 'medium' }).format(post.created_at)}
-                  footer 
-                    ul
+    div#wrapper 
+      include includes/header.pug
+      main.mb-auto
+        div.mb-2.border-b.py-1.border-gray-400
+          h2="글 목록"
+          p= "프론트엔드 개발에 필요한 내용을 공유합니다."
+        div.pt-8
+          ul
+            each post in posts
+              - const year = String(post.created_at.getFullYear());
+              - const month = String(post.created_at.getMonth() + 1).padStart(2, "0");
+              - const date = String(post.created_at.getDate()).padStart(2, "0");
+              li.mb-5
+                article
+                  h3
+                    a(href="posts/"+post.slug)= post.title
+                  p.text-gray-400= post.summary
+                  div.flex.flex-row.text-gray-500.gap-6
+                    time(datetime=post.created_at) #{new Intl.DateTimeFormat('ko-KR', { dateStyle: 'long' }).format(post.created_at)}
+                    ul.flex.flex-row.gap-3(style="list-style: none;")
                       each tag in post.tags
-                        li= tag
-    include includes/footer.pug
+                        li= `#${tag}`
+      include includes/footer.pug

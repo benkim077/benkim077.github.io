@@ -7,6 +7,6 @@ export default {
     POSTS: "posts",
   },
   site: {
-    title: "Ben의 블로그",
+    title: "Ben의 기술 블로그",
   },
 };
