@@ -66,8 +66,11 @@ async function buildMarkdownFiles() {
   }
 }
 
+// async function buildAssetFiles() {}
+
 async function build() {
   await mkdir(DOCS);
+  // await buildAssetFiles();
   await buildHtmlFiles();
   await buildMarkdownFiles();
 }
