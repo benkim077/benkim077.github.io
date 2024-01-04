@@ -5,13 +5,14 @@ html(lang="ko-KR")
     include includes/header.pug
     main 
       article
-        //- h2= pageTitle
-        //- ul 
-        //-   each tag in tags 
-        //-     li= tag
-        //- - const year = String(created_at.getFullYear());
-        //- - const month = String(created_at.getMonth() + 1).padStart(2, "0");
-        //- - const date = String(created_at.getDate()).padStart(2, "0");
-        //- time(datetime=created_at) #{year}/#{month}/#{date}
-        //- div !{content}
+        header
+          //- - const year = String(post.created_at.getFullYear());
+          //- - const month = String(post.created_at.getMonth() + 1).padStart(2, "0");
+          //- - const date = String(post.created_at.getDate()).padStart(2, "0");
+          h2= post.title
+          ul 
+            each tag in post.tags 
+              li= tag
+          time(datetime=post.created_at) #{new Intl.DateTimeFormat('ko-KR', { dateStyle: 'full' }).format(post.created_at)}
+        main !{post.content}
     include includes/footer.pug

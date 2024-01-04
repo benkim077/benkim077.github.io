@@ -10,7 +10,7 @@ created_at: 2023-05-01T12:15:55.347Z
 
 ### 1. Async Operations
 
-Learn to execute tasks concurrently, a crucial aspect of building efficient web applications.
+Learn to [execute](https://google.com) tasks concurrently, a crucial aspect of building efficient web applications.
 
 ### 2. Callbacks
 

@@ -1,17 +1,26 @@
+import Showdown from "showdown";
 import { mkdir, readFile, readdir, writeFile } from "fs/promises";
 import pug from "pug";
 import config from "../config";
 import matter from "gray-matter";
+import getPostList from "../src/store/getPostList";
+import { PostMetadata } from "../src/interfaces";
 
 const { DOCS, VIEWS, SRC, CONTENTS, POSTS } = config.build;
 
-async function renderFile(source: string, dest: string) {
+async function renderFile(
+  source: string,
+  dest: string,
+  templateVariables?: Object
+) {
   const templateFile = await readFile(source);
   const createIndexTemplate = pug.compile(templateFile.toString(), {
     filename: source,
   });
-  const html = createIndexTemplate({ ...config }); // TODO: 동적/정적 값 구분
-  writeFile(dest, html);
+
+  const html = createIndexTemplate({ ...config, ...templateVariables }); // TODO: 동적/정적 값 구분
+
+  await writeFile(dest, html);
 }
 
 async function buildHtmlFiles() {
@@ -26,7 +35,8 @@ async function buildHtmlFiles() {
         await mkdir(`${DOCS}/${dirName}`);
         await renderFile(
           `${SRC}/${VIEWS}/${file}`,
-          `${DOCS}/${dirName}/index.html`
+          `${DOCS}/${dirName}/index.html`,
+          await getPostList(`${SRC}/${CONTENTS}`)
         );
         break;
     }
@@ -39,16 +49,20 @@ async function buildMarkdownFiles() {
     const dirName = file.split(".md")[0];
     await mkdir(`${DOCS}/${POSTS}/${dirName}`);
     const postFile = await readFile(`${SRC}/${CONTENTS}/${file}`);
-    // TODO content를 HTML로 변환하기
-    // TODO: data, content를 createPostTemplate의 인자로 전달하기
-    const { data, content } = matter(postFile);
+    // TODO: data의 Type 설정은 어떻게 해야 하는가?
+    const { data, content } = matter(postFile.toString());
+    const converter = new Showdown.Converter();
+    const post = {
+      ...data,
+      content: converter.makeHtml(content),
+    };
     const templateFilePath = `${SRC}/${VIEWS}/post.pug`;
     const templateFile = await readFile(templateFilePath);
     const createPostTemplate = pug.compile(templateFile.toString(), {
       filename: templateFilePath,
     });
-    const html = createPostTemplate({ ...config });
-    writeFile(`${DOCS}/${POSTS}/${dirName}/index.html`, html);
+    const html = createPostTemplate({ ...config, post });
+    await writeFile(`${DOCS}/${POSTS}/${dirName}/index.html`, html);
   }
 }
 
