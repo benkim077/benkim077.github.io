@@ -1,5 +1,4 @@
 import { readdir } from "fs/promises";
-import { PostMetadata } from "../interfaces";
 import { getMarkdownMetadata } from "./getMarkdownMetadata";
 
 export default async function getPostList(path: string) {
@@ -13,5 +12,7 @@ export default async function getPostList(path: string) {
     return -(a.created_at.getTime() - b.created_at.getTime());
   });
   const sortedPost = metas;
-  return sortedPost;
+  return {
+    posts: sortedPost,
+  };
 }

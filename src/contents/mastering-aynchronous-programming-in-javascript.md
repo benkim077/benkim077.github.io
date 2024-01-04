@@ -5,12 +5,13 @@ summary: As a junior frontend developer, delving into asynchronous programming i
 tags: ["javascript", "asynchronous"]
 created_at: 2023-05-01T12:15:55.347Z
 ---
+# title
 
 ## Asynchronous Basics
 
 ### 1. Async Operations
 
-Learn to execute tasks concurrently, a crucial aspect of building efficient web applications.
+Learn to [execute](https://google.com) tasks concurrently, a crucial aspect of building efficient web applications.
 
 ### 2. Callbacks
 
@@ -28,7 +29,21 @@ Explore the power of async/await syntax for more readable and synchronous-like c
 
 ### 5. Fetching Data
 
-Apply your knowledge to fetching data from an API, showcasing both promises and async/await.
+- ul
+    - ul
+- ul
+
+1. ol
+    1. 12
+    2. 34
+
+---
+
+Apply your **knowledge** to _fetching data_ from an API, showcasing both promises and async/await.
+
+> [!summary] hello world
+>
+> hello world
 
 ```javascript
 // Using Promises

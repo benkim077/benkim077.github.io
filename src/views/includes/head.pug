@@ -1,15 +1,13 @@
 head
   meta(charset="UTF-8")
   meta(name="viewport" content="width=device-width, initial-scale=1.0")
-  if !title
-    title Ben의 기술 블로그
-  else
-    title #{title} - Ben의 기술 블로그
+  title=site.title
   meta(name="Description" content=description)
   meta(property="og:image" content=ogImage)
   meta(property="og:title" content=title)
   meta(property="og:description" content=description)
   meta(property="og:url" content=ogURL)
   meta(property="og:locale" content="ko_KR")
-  meta(property="og:site_name" content=SITE_NAME)
+  meta(property="og:site_name" content=site.title)
   meta(property="og:type" content="website")
+  link(href="/style.css" rel="stylesheet")

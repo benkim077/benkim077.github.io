@@ -1,18 +1,17 @@
-include includes/locals.pug
-
 doctype html
-html(lang="ko-KR")
+html.bg-background-dark.text-font-white(lang="ko-KR")
   include includes/head.pug
   body
-    include includes/header.pug
-    main 
-      article
-        h2= pageTitle
-        ul 
-          each tag in tags 
-            li= tag
-        - const year = String(created_at.getFullYear());
-        - const month = String(created_at.getMonth() + 1).padStart(2, "0");
-        - const date = String(created_at.getDate()).padStart(2, "0");
-        time(datetime=created_at) #{year}/#{month}/#{date}
-        div !{content}
+    div#wrapper
+      include includes/header.pug
+      main.mb-auto
+        article#post
+          header.border-b.py-1.border-gray-400
+            h2= post.title
+            div.flex.flex-row.text-gray-400.gap-6
+              time(datetime=post.created_at) #{new Intl.DateTimeFormat('ko-KR', { dateStyle: 'full' }).format(post.created_at)}
+              ul.flex.flex-row.gap-3(style="list-style: none;")
+                each tag in post.tags 
+                  li= `#${tag}`
+          main.pt-8 !{post.content}
+      include includes/footer.pug
