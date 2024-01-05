@@ -17,7 +17,7 @@ html.bg-background-dark.text-font-white(lang="ko-KR")
               li.mb-5
                 article
                   h3
-                    a(href="posts/"+post.slug)= post.title
+                    a(href="/posts/"+post.slug)= post.title
                   p.text-gray-400= post.summary
                   div.flex.flex-row.text-gray-500.gap-6
                     time(datetime=post.created_at) #{new Intl.DateTimeFormat('ko-KR', { dateStyle: 'long' }).format(post.created_at)}
