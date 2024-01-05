@@ -1,0 +1,45 @@
+<!DOCTYPE html><html class="bg-background-dark text-font-white" lang="ko-KR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Ben의 기술 블로그</title><meta name="Description"><meta property="og:image"><meta property="og:title"><meta property="og:description"><meta property="og:url"><meta property="og:locale" content="ko_KR"><meta property="og:site_name" content="Ben의 기술 블로그"><meta property="og:type" content="website"><link href="/style.css" rel="stylesheet"></head><body><div id="wrapper"><header class="py-5"><h1>Ben의 기술 블로그</h1><nav><ul class="text-lg font-medium flex gap-4 list-none"><li><a href="/">About</a></li><li><a href="/posts">Posts</a></li></ul></nav></header><main class="mb-auto"><article id="post"><header class="border-b py-1 border-gray-400"><h2>Mastering Asynchronous Programming in JavaScript</h2><div class="flex flex-row text-gray-400 gap-6"><time datetime="2023-05-01T12:15:55.347Z">2023년 5월 1일 월요일</time><ul class="flex flex-row gap-3" style="list-style: none;"><li>#javascript</li><li>#asynchronous</li></ul></div></header><main class="pt-8"><h3 id="title">title</h3>
+<h4 id="asynchronousbasics">Asynchronous Basics</h4>
+<h5 id="1asyncoperations">1. Async Operations</h5>
+<p>Learn to <a href="https://google.com">execute</a> tasks concurrently, a crucial aspect of building efficient web applications.</p>
+<h5 id="2callbacks">2. Callbacks</h5>
+<p>Understand callback functions as the foundation of handling asynchronous tasks, though beware of "callback hell."</p>
+<h5 id="3promises">3. Promises</h5>
+<p>Simplify your code using promises, which offer cleaner syntax and better error handling.</p>
+<h5 id="4asyncawait">4. Async/Await</h5>
+<p>Explore the power of async/await syntax for more readable and synchronous-like code.</p>
+<h4 id="realworldapplication">Real-world Application</h4>
+<h5 id="5fetchingdata">5. Fetching Data</h5>
+<ul>
+<li>ul<ul>
+<li>ul</li></ul></li>
+<li>ul</li>
+</ul>
+<ol>
+<li>ol<ol>
+<li>12</li>
+<li>34</li></ol></li>
+</ol>
+<hr />
+<p>Apply your <strong>knowledge</strong> to <em>fetching data</em> from an API, showcasing both promises and async/await.</p>
+<blockquote>
+  <p>[!summary] hello world</p>
+  <p>hello world</p>
+</blockquote>
+<pre><code class="javascript language-javascript">// Using Promises
+fetch("https://api.example.com/data")
+  .then((response) =&gt; response.json())
+  .then((data) =&gt; console.log(data))
+  .catch((error) =&gt; console.error(error));
+
+// Using Async/Await
+async function fetchData() {
+  try {
+    const response = await fetch("https://api.example.com/data");
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+</code></pre></main></article></main><footer class="py-3 border-t mt-3 text-gray-400"><p>ⓒ 2024 Ben Kim</p></footer></div></body></html>

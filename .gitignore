@@ -12,6 +12,5 @@
 #!.yarn/cache
 .pnp.*
 
-# dist
-/dist
-/docs
+# mac_os
+.DS_Store
