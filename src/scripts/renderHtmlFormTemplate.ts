@@ -1,9 +1,8 @@
-import { readFile, writeFile } from "fs/promises";
+import { readFile } from "fs/promises";
 import pug from "pug";
 import { HtmlTemplateVariables } from "../interfaces";
 
 /** Pug 파일을 읽고 HTML 파일을 렌더링하는 함수 */
-
 export async function renderHtmlFormTemplate(
   source: string,
   templateArguments: HtmlTemplateVariables
