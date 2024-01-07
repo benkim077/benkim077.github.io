@@ -2,8 +2,8 @@ import Showdown from "showdown";
 import { readFile } from "fs/promises";
 import pug from "pug";
 import matter from "gray-matter";
-import { HtmlTemplateVariables, Post, PostMetadata } from "../src/interfaces";
-import config from "./config";
+import { HtmlTemplateVariables, Post, PostMetadata } from "../interfaces";
+import config from "../config";
 
 const { SRC, VIEWS } = config.build;
 

@@ -1,6 +1,6 @@
 import { mkdir, readdir, writeFile } from "fs/promises";
 import { renderHtmlFromMarkdown } from "./renderHtmlFromMarkdown";
-import config from "./config";
+import config from "../config";
 
 const { DOCS, POSTS } = config.build;
 

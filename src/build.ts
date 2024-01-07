@@ -1,6 +1,6 @@
 import { mkdir } from "fs/promises";
 import config from "./config";
-import { buildHtmlFiles } from "./buildHtmlFiles";
+import { buildHtmlFiles } from "./scripts/buildHtmlFiles";
 
 const { DOCS, VIEWS, SRC, CONTENTS } = config.build;
 const SEARCH_FOLDERS = [`${SRC}/${VIEWS}`, `${SRC}/${CONTENTS}`];

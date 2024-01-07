@@ -1,7 +1,7 @@
 import { mkdir, readdir, writeFile } from "fs/promises";
-import getPostList from "../src/store/getPostList";
+import getPostList from "../store/getPostList";
 import { renderHtmlFormTemplate } from "./renderHtmlFormTemplate";
-import config from "./config";
+import config from "../config";
 
 const { DOCS, SRC, CONTENTS, POSTS } = config.build;
 

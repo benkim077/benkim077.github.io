@@ -1,6 +1,6 @@
 import { buildFromMarkdown } from "./buildFromMarkdown";
 import { buildFromTemplate } from "./buildFromTemplate";
-import config from "./config";
+import config from "../config";
 
 const { SRC, CONTENTS, VIEWS } = config.build;
 

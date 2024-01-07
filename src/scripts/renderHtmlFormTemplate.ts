@@ -1,6 +1,6 @@
 import { readFile, writeFile } from "fs/promises";
 import pug from "pug";
-import { HtmlTemplateVariables } from "../src/interfaces";
+import { HtmlTemplateVariables } from "../interfaces";
 
 /** Pug 파일을 읽고 HTML 파일을 렌더링하는 함수 */
 
