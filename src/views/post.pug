@@ -10,7 +10,7 @@ html.bg-background-dark.text-font-white(lang="ko-KR")
             h2= post.title
             div.flex.flex-row.text-gray-400.gap-6
               time(datetime=post.created_at) #{new Intl.DateTimeFormat('ko-KR', { dateStyle: 'full' }).format(post.created_at)}
-              ul.flex.flex-row.gap-3(style="list-style: none;")
+              ul.flex.flex-row.gap-3
                 each tag in post.tags 
                   li= `#${tag}`
           main.pt-8 !{post.content}

@@ -22,6 +22,10 @@ a {
   @apply list-disc list-outside pl-6;
 }
 
+#post header ul {
+  @apply list-none;
+}
+
 #post ol {
   @apply list-decimal list-outside pl-6;
 }
