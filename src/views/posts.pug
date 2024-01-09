@@ -6,7 +6,7 @@ html.bg-background-dark.text-font-white(lang="ko-KR")
       include includes/header.pug
       main.mb-auto
         div.mb-2.border-b.py-1.border-gray-400
-          h2="포스트 목록"
+          h2.text-5xl.font-bold="포스트 목록"
           p= "JavaScript, React, Bundler 등 프론트엔드 개발에 대한 내용을 공유합니다."
         div.pt-8
           ul
@@ -16,7 +16,7 @@ html.bg-background-dark.text-font-white(lang="ko-KR")
               - const date = String(post.created_at.getDate()).padStart(2, "0");
               li.mb-5
                 article
-                  h3
+                  h3.text-2xl.font-bold
                     a(href="/posts/"+post.slug)= post.title
                   p.text-gray-400= post.summary
                   div.flex.flex-row.text-gray-500.gap-6

@@ -7,7 +7,7 @@ html.bg-background-dark.text-font-white(lang="ko-KR")
       main.mb-auto
         article
           header.border-b.py-1.border-gray-400
-            h2= post.title
+            h2.text-5xl.font-bold= post.title
             div.flex.flex-row.text-gray-400.gap-6
               time(datetime=post.created_at) #{new Intl.DateTimeFormat('ko-KR', { dateStyle: 'full' }).format(post.created_at)}
               ul.flex.flex-row.gap-3

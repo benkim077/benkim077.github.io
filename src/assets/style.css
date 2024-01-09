@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply antialiased mx-auto max-w-3xl px-4 leading-7;
+  @apply antialiased mx-auto max-w-4xl px-4 leading-7;
 }
 
 #wrapper {
@@ -12,4 +12,16 @@ body {
 
 a {
   @apply text-sky-400 underline font-semibold hover:text-sky-300; 
+}
+
+p + h3,
+p + h4,
+p + h5,
+ol + h3,
+ol + h4,
+ol + h5,
+ul + h3,
+ul + h4,
+ul + h5 {
+  @apply pt-4
 }
