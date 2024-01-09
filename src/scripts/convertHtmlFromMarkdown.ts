@@ -22,7 +22,7 @@ const classMap: ClassMap = {
 
 const bindings = Object.keys(classMap).map((key) => ({
   type: "output",
-  regex: new RegExp(`<${key}\\b[^>]*>`, "g"),
+  regex: new RegExp(`<${key}\\b([^>]*)>`, "g"),
   replace: `<${key} class="${classMap[key]}" $1>`,
 }));
 
