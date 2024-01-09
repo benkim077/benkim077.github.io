@@ -9,7 +9,8 @@ const classMap: ClassMap = {
   // h2: "text-2xl font-bold my-2",
   h3: "text-4xl font-bold my-1",
   h4: "text-3xl font-bold my-1",
-  h5: "text-2xl font-bold my-1 ",
+  h5: "text-2xl font-bold my-1",
+  h6: "text-xl font-bold my-1",
   p: "my-1",
   hr: "border-gray-400 my-5",
   ul: "list-disc list-outside pl-8",
@@ -17,12 +18,12 @@ const classMap: ClassMap = {
   strong: "text-bold",
   em: "text-bold",
   blockquote: "px-3 text-font-quote my-2 border-l-2 border-[#4d8ce7]",
-  pre: "bg-[#282c35] p-3 my-2",
+  pre: "bg-[#282c35] p-3 my-2 text-balance",
 };
 
 const bindings = Object.keys(classMap).map((key) => ({
   type: "output",
-  regex: new RegExp(`<${key}\\b[^>]*>`, "g"),
+  regex: new RegExp(`<${key}\\b([^>]*)>`, "g"),
   replace: `<${key} class="${classMap[key]}" $1>`,
 }));
 
