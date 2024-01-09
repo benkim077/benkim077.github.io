@@ -13,6 +13,7 @@ created_at: 2024-01-09T14:19:35.595Z
 ## TailwindCSS
 현재 메인 스타일링 도구로 TailwindCSS를 사용하고 있다. 
 Tailwind는 Utility CSS Framework이다. 필요한 스타일을 태그의 class에 부착하면서 사용할 수 있다. 이런 사용성 덕분에 *변화에 대응하기 쉽다는 특징*을 갖는다. (Tailwind 방식이 주는 이점에 대해서 궁금하다면 [이 문서](https://tailwindcss.com/docs/utility-first#overview)를 살펴보세요.)
+
 *제품 초기 단계에 디자인 변동이 잦을 것으로 생각했기에* Tailwind를 선택했다.
 
 ## Pug
@@ -124,11 +125,14 @@ h3 {
 }
 ```
 
-하지만 *코드가 여러 군데에 맥락없이 분리*되어 CSS 코드를 찾기 어려워졌고, 요구사항에 기민하게 대응하기 어려워졌다. 구체적으로는 *Inline style, selector, utiltity class 가 혼용되어 CSS 우선순위를 파악하기 어려운 문제*가 있었고, 결국 코드가 의도대로 작동하지 않았다.
+하지만 *코드가 여러 군데에 맥락없이 분리*되어 CSS 코드를 찾기 어려워졌고, 요구사항에 기민하게 대응하기 어려워졌다. 
+
+구체적으로는 *Inline style, selector, utiltity class 가 혼용되어 CSS 우선순위를 파악하기 어려운 문제*가 있었고, 결국 코드가 의도대로 작동하지 않았다.
 
 ### 해결 방법
 *이를 해결하기 위해 inline style, selector는 최소화하고, utility class를 최대한 활용하는 방법을 고민*하기 시작했다.
 *결국 post에서 생성된 html에 utility class를 붙여야 해결될 문제*였다. 
+
 이것을 구현하기 위해서 여러 방법들을 고민했다. 그리고 마지막 방법을 선택했다.
 - ~~DOM API~~
     - 문제점 : HTML 문자열이기 때문에 사용할 수 없다.
@@ -143,9 +147,10 @@ h3 {
         - *markdown이 형식과 내용을 함께 갖는 언어라는 측면에서 md 파일이 HTML 파일로 변경될 때 스타일 클래스가 붙어서 나오는 것은 매우 자연스러움*
         - *md > html > pug > tailwind 의 순서가 깔끔해짐*
 
-![Markdown 파일이 HTML, CSS로 변환되는 프로세스](src/assets/images/markdown-to-html-css.png)
+![Markdown 파일이 HTML, CSS로 변환되는 프로세스](/assets/images/markdown-to-html-css.png)
 
 Showdown을 이용해서 위 그림 같은 로직을 통해 HTML, CSS가 생성할 수 있게 됐다.
+
 Post Page의 경우 설명:
 - Showdown을 사용하여 *스타일링된 부분적 HTML을 생성*한다.
 - Pug는 개발자가 입력한 Template과, HTML을 입력받아 *전체 HTML을 생성*한다.
@@ -205,6 +210,7 @@ utlility 클래스가 생성된 것을 확인할 수 있다.
 ### 한계점
 특정 경우에 대해 이 프로세스로 해결할 수 없었다.
 예를 들면 `<p>`, `<ol>`, `<ul>` 바로 뒤에 `<h>` 태그가 오는 경우에 문서의 가독성을 위해 적당한 간격이 필요했다. 
+
 이 경우는 태그의 관계에 의한 스타일링이기 때문에, 선택자로 코딩할 수밖에 없다. 아래와 같이 처리해줬다.
 
 ```css
