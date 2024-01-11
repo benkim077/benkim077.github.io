@@ -17,4 +17,5 @@ export const utilityClassMap: ClassMap = {
   em: "text-[#ff82b2]",
   blockquote: "px-3 text-font-quote my-2 border-l-2 border-[#4d8ce7]",
   pre: "bg-[#282c35] p-3 my-2 text-balance",
+  code: "bg-[#282c35] p-1 rounded",
 };
