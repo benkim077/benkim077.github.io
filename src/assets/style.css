@@ -32,3 +32,7 @@ pre + h5,
 pre + h6 {
   @apply pt-4
 }
+
+img + em {
+  @apply block text-center pb-4;
+}
