@@ -147,7 +147,7 @@ h3 {
         - *markdown이 형식과 내용을 함께 갖는 언어라는 측면에서 md 파일이 HTML 파일로 변경될 때 스타일 클래스가 붙어서 나오는 것은 매우 자연스러움*
         - *md > html > pug > tailwind 의 순서가 깔끔해짐*
 
-![Markdown 파일이 HTML, CSS로 변환되는 프로세스](/assets/images/markdown-to-html-css.png)
+![Markdown 파일이 HTML, CSS로 변환되는 프로세스](/assets/images/markdown-to-html-css.png)*Markdown 파일이 HTML, CSS로 변환되는 프로세스*
 
 Showdown을 이용해서 위 그림 같은 로직을 통해 HTML, CSS가 생성할 수 있게 됐다.
 
