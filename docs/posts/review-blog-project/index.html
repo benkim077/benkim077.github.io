@@ -1,6 +1,6 @@
 <!DOCTYPE html><html class="bg-background-dark text-font-white" lang="ko-KR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>깃허브 블로그 만든 후기 - Ben의 기술 블로그</title><meta name="Description" content="번들러 없이 블로그를 만들었습니다."><meta property="og:image"><meta property="og:title" content="깃허브 블로그 만든 후기"><meta property="og:description" content="번들러 없이 블로그를 만들었습니다."><meta property="og:url" content="https://benkim077.github.io/review-blog-project"><meta property="og:locale" content="ko_KR"><meta property="og:site_name" content="깃허브 블로그 만든 후기"><meta property="og:type" content="website"><link href="/style.css" rel="stylesheet"></head><body><div id="wrapper"><header class="py-5"><h1 class="text-3xl font-bold">Ben의 기술 블로그</h1><nav><ul class="text-xl font-medium flex gap-4 list-none"><li><a href="/">About</a></li><li><a href="/posts">Posts</a></li></ul></nav></header><main class="mb-auto"><article><header class="border-b py-1 border-gray-400"><h2 class="text-5xl font-bold">깃허브 블로그 만든 후기</h2><div class="flex flex-row text-gray-400 gap-6"><time datetime="2024-01-05T11:15:09.059Z">2024년 1월 5일 금요일</time><ul class="flex flex-row gap-3"><li>#blog</li></ul></div></header><main class="pt-8"><blockquote class="px-3 text-font-quote my-2 border-l-2 border-[#4d8ce7]" >
-  <p class="my-1" >이번 프로젝트의 중점 사항은 <em class="text-bold" >프레임워크 없이 개발하기</em> 였습니다.
-  즉 <em class="text-bold" >모던 번들러와 프레임워크의 사용을 최소화</em>하고 직접 기능을 구현하면서 <em class="text-bold" >번들러의 역할에 대한 이해</em>를 높이고 싶었습니다.</p>
+  <p class="my-1" >이번 프로젝트의 중점 사항은 <em class="text-[#ff82b2]" >프레임워크 없이 개발하기</em> 였습니다.
+  즉 <em class="text-[#ff82b2]" >모던 번들러와 프레임워크의 사용을 최소화</em>하고 직접 기능을 구현하면서 <em class="text-[#ff82b2]" >번들러의 역할에 대한 이해</em>를 높이고 싶었습니다.</p>
   <p class="my-1" >"간단한 Server Side Rendering을 구현해보자"는 것이 프로젝트의 목표였습니다.</p>
   <p class="my-1" >블로그 구축 과정에서 겪은 문제점들과 배운 점들을 공유해보려고 한다.</p>
 </blockquote>
@@ -21,7 +21,7 @@
 앞으로 포스트를 열심히 작성하고 SEO를 향상시켜야 할 것 같네요.</p>
 <h3 class="text-4xl font-bold my-1" >잘못된 방향 : SSR을 구현하려고 했지만…</h3>
 <h4 class="text-3xl font-bold my-1" >최초 구현 방식</h4>
-<p class="my-1" >처음에는 <em class="text-bold" >SSR로 구현</em>된 블로그를 목표로 프로젝트를 시작했고, Express를 이용해서 서버를 구현했었습니다.
+<p class="my-1" >처음에는 <em class="text-[#ff82b2]" >SSR로 구현</em>된 블로그를 목표로 프로젝트를 시작했고, Express를 이용해서 서버를 구현했었습니다.
 이 서버는 페이지의 html 파일을 리턴하는 웹서버입니다.</p>
 <p class="my-1" >서버는 다음 순서대로 동작합니다.</p>
 <ol class="list-decimal list-outside pl-8" >
@@ -30,23 +30,23 @@
 <li>.html 파일을 담아 응답합니다.</li>
 </ol>
 <h4 class="text-3xl font-bold my-1" >문제 인식</h4>
-<p class="my-1" >하지만 SSR을 구현하는 데에 <em class="text-bold" >여러 문제들</em>이 있었습니다.</p>
+<p class="my-1" >하지만 SSR을 구현하는 데에 <em class="text-[#ff82b2]" >여러 문제들</em>이 있었습니다.</p>
 <ul class="list-disc list-outside pl-8" >
 <li>블로그에 SSR이 적합한 기술인가?</li>
 <li>도메인 / 호스팅 비용</li>
 <li>서버 배포 / DB 관련 러닝 커브</li>
 </ul>
-<p class="my-1" >이런 이유 때문에 SSR 보다 <em class="text-bold" >Static Site Generate 방식이 더 적합</em>하다고 느껴졌습니다. 
+<p class="my-1" >이런 이유 때문에 SSR 보다 <em class="text-[#ff82b2]" >Static Site Generate 방식이 더 적합</em>하다고 느껴졌습니다. 
 Github Pages는 github.io 도메인을 제공할 뿐만 아니라 정적 파일을 호스팅해줍니다. 
 이제 방향을 전환하지 않을 이유는 없겠죠.</p>
 <h4 class="text-3xl font-bold my-1" >SSG로 방식으로 전환</h4>
 <p class="my-1" >Github Pages는 제가 생성한 정적 파일을 Serving 합니다.</p>
-<p class="my-1" >이제 제가 구현해야 할 것은 런타임에서 html 파일을 생성하는 것이 아니고, <em class="text-bold" >빌드 타임에서 html 파일을 생성</em>하는 것으로 변경되었습니다. 그리고 html 파일을 Pages가 사용할 수 있도록 전달하면 됩니다.</p>
+<p class="my-1" >이제 제가 구현해야 할 것은 런타임에서 html 파일을 생성하는 것이 아니고, <em class="text-[#ff82b2]" >빌드 타임에서 html 파일을 생성</em>하는 것으로 변경되었습니다. 그리고 html 파일을 Pages가 사용할 수 있도록 전달하면 됩니다.</p>
 <p class="my-1" >기존 코드도 내부적으로는 비슷한 로직을 가지고 있었기 때문에 빠르게 구현을 이어나갈 수 있었습니다.</p>
 <h4 class="text-3xl font-bold my-1" >dev 서버의 부재</h4>
-<p class="my-1" >하지만 SSR을 포기하자 <em class="text-bold" >개발자 경험이 많이 저하되는 문제</em>도 있었습니다. 
-기존에는 Express와 Nodemon을 이용한 일종의 <em class="text-bold" >dev 서버</em>로 개발했었습니다. 작업한 내용이 새로고침하면 바로 적용되어서 편한 부분이 있었습니다. (모던 번들러는 HMR을 지원하기에 더욱 편리하지만)</p>
-<p class="my-1" >SSG는 빌드 타임에 생성되는 방식이기 때문에, <em class="text-bold" >매번 빌드 스크립트를 돌리고 static server를 돌려서 확인해야하는 불편함</em>이 있었습니다. 번들러가 제공해주는 dev 서버가 많이 그리웠네요. 
+<p class="my-1" >하지만 SSR을 포기하자 <em class="text-[#ff82b2]" >개발자 경험이 많이 저하되는 문제</em>도 있었습니다. 
+기존에는 Express와 Nodemon을 이용한 일종의 <em class="text-[#ff82b2]" >dev 서버</em>로 개발했었습니다. 작업한 내용이 새로고침하면 바로 적용되어서 편한 부분이 있었습니다. (모던 번들러는 HMR을 지원하기에 더욱 편리하지만)</p>
+<p class="my-1" >SSG는 빌드 타임에 생성되는 방식이기 때문에, <em class="text-[#ff82b2]" >매번 빌드 스크립트를 돌리고 static server를 돌려서 확인해야하는 불편함</em>이 있었습니다. 번들러가 제공해주는 dev 서버가 많이 그리웠네요. 
 Vite가 제공하는 Hot Module Replacement 기능에 대해 궁금해져 공식 문서를 찾아보기도 했었습니다. 
 다음 목표는 이런 개발 환경을 구축하는 것이 될 수 있겠네요.</p>
 <h3 class="text-4xl font-bold my-1" >개선 사항</h3>
@@ -62,8 +62,8 @@ Vite가 제공하는 Hot Module Replacement 기능에 대해 궁금해져 공식
 <h4 class="text-3xl font-bold my-1" >DX의 측면</h4>
 <ul class="list-disc list-outside pl-8" >
 <li>개발 환경 구축<ul class="list-disc list-outside pl-8" >
-<li>매번 build하는 것이 매우 귀찮았습니다. <em class="text-bold" >HMR</em>을 지원하는 <em class="text-bold" >dev server</em>를 구현할 수 있다면 정말 편해질 것 같다는 생각을 많이 했네요.</li>
-<li><em class="text-bold" >"하나의 로직에 대해 runtime / build 타임에 각각 정적 파일을 빌드할 수 있는 pipe를 어떻게 구현할 수 있을까?"</em> 분명 가능할거라 생각하지만 쉽지 않겠네요.</li></ul></li>
+<li>매번 build하는 것이 매우 귀찮았습니다. <em class="text-[#ff82b2]" >HMR</em>을 지원하는 <em class="text-[#ff82b2]" >dev server</em>를 구현할 수 있다면 정말 편해질 것 같다는 생각을 많이 했네요.</li>
+<li><em class="text-[#ff82b2]" >"하나의 로직에 대해 runtime / build 타임에 각각 정적 파일을 빌드할 수 있는 pipe를 어떻게 구현할 수 있을까?"</em> 분명 가능할거라 생각하지만 쉽지 않겠네요.</li></ul></li>
 </ul>
 <h3 class="text-4xl font-bold my-1" >무엇을 배웠나?</h3>
 <blockquote class="px-3 text-font-quote my-2 border-l-2 border-[#4d8ce7]" >
@@ -73,19 +73,19 @@ Vite가 제공하는 Hot Module Replacement 기능에 대해 궁금해져 공식
 <ul class="list-disc list-outside pl-8" >
 <li>AJAX 이전 웹개발 방식을 이해할 수 있었습니다. <ul class="list-disc list-outside pl-8" >
 <li>프론트엔드가 없던 시절, 서버에서 대부분의 역할을 담당해왔음. </li></ul></li>
-<li><em class="text-bold" >"많은 개발 도구들의 도움 덕분에 쉽게 개발해왔구나"</em> 몸소 경험할 수 있었다.</li>
+<li><em class="text-[#ff82b2]" >"많은 개발 도구들의 도움 덕분에 쉽게 개발해왔구나"</em> 몸소 경험할 수 있었다.</li>
 <li>공식 문서 활용 능력<ul class="list-disc list-outside pl-8" >
 <li>(Express, Pug) 핵심만 콕콕 잘도 넣어놨네. 공식 문서만 봐도 MVP 정도는 충분히 개발 가능하구나</li>
-<li><em class="text-bold" >TailwindCSS</em>의 <a href="https://tailwindcss.com/blog/just-in-time-the-next-generation-of-tailwind-css">JIT 전략</a>과 <a href="https://tailwindcss.com/docs/installation">Tailwind Installation Guide</a>를 통해 output.css 파일 빌드 프로세스를 대략적으로 알게됨</li>
-<li><a href="https://vitejs.dev/guide/why.html">Why Vite</a>만 읽어도 <em class="text-bold" >Vite</em>가 얼마나 대단한지 알 수 있다.</li></ul></li>
-<li><em class="text-bold" >Promise에 대한 이해</em> - "한 번 프로미스는 영원히 프로미스"</li>
+<li><em class="text-[#ff82b2]" >TailwindCSS</em>의 <a href="https://tailwindcss.com/blog/just-in-time-the-next-generation-of-tailwind-css">JIT 전략</a>과 <a href="https://tailwindcss.com/docs/installation">Tailwind Installation Guide</a>를 통해 output.css 파일 빌드 프로세스를 대략적으로 알게됨</li>
+<li><a href="https://vitejs.dev/guide/why.html">Why Vite</a>만 읽어도 <em class="text-[#ff82b2]" >Vite</em>가 얼마나 대단한지 알 수 있다.</li></ul></li>
+<li><em class="text-[#ff82b2]" >Promise에 대한 이해</em> - "한 번 프로미스는 영원히 프로미스"</li>
 <li>번들러와 프레임워크가 주는 편의성을 느낌<ul class="list-disc list-outside pl-8" >
 <li>Vite의 Component HMR</li>
 <li>Next.js의 Component 단위 SSR</li></ul></li>
 <li>Github 활용<ul class="list-disc list-outside pl-8" >
 <li>비록 혼자 사용했지만 <a href="https://github.com/benkim077/benkim077.github.io/issues?q=is%3Aissue">issue</a>, <a href="https://github.com/benkim077/benkim077.github.io/pulls?q=is%3Apr">PR</a>을 관리함</li>
-<li><em class="text-bold" >Issue를 이용해서 문서, 트러블슈팅, 추후 개발 사항 등을 정리</em></li></ul></li>
+<li><em class="text-[#ff82b2]" >Issue를 이용해서 문서, 트러블슈팅, 추후 개발 사항 등을 정리</em></li></ul></li>
 <li>Node Version Manager 변경<ul class="list-disc list-outside pl-8" >
-<li>nvm에서 <em class="text-bold" >asdf</em>으로 전환</li>
+<li>nvm에서 <em class="text-[#ff82b2]" >asdf</em>으로 전환</li>
 <li>asdf에서 yarn berry 사용하기</li></ul></li>
 </ul></main></article></main><footer class="py-3 border-t mt-3 text-gray-400"><p>ⓒ 2024 Ben Kim</p></footer></div></body></html>
