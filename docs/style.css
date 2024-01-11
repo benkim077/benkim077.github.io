@@ -623,6 +623,10 @@ video {
   text-wrap: balance;
 }
 
+.rounded {
+  border-radius: 0.25rem;
+}
+
 .border-b {
   border-bottom-width: 1px;
 }
@@ -650,9 +654,17 @@ video {
   background-color: rgb(40 44 53 / var(--tw-bg-opacity));
 }
 
+.bg-\[\#ffce0060\] {
+  background-color: #ffce0060;
+}
+
 .bg-background-dark {
   --tw-bg-opacity: 1;
   background-color: rgb(28 33 39 / var(--tw-bg-opacity));
+}
+
+.p-1 {
+  padding: 0.25rem;
 }
 
 .p-3 {
@@ -724,7 +736,7 @@ video {
   font-weight: 500;
 }
 
-.text-bold {
+.text-\[\#ff82b2\] {
   --tw-text-opacity: 1;
   color: rgb(255 130 178 / var(--tw-text-opacity));
 }
