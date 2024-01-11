@@ -676,6 +676,11 @@ video {
   padding-right: 0.75rem;
 }
 
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 .py-1 {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
@@ -689,6 +694,10 @@ video {
 .py-5 {
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
+}
+
+.pb-1 {
+  padding-bottom: 0.25rem;
 }
 
 .pl-8 {
@@ -808,4 +817,10 @@ pre + h4,
 pre + h5,
 pre + h6 {
   padding-top: 1rem;
+}
+
+img + em {
+  display: block;
+  padding-bottom: 1rem;
+  text-align: center;
 }
