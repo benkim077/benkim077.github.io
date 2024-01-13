@@ -4,6 +4,7 @@ export interface PostMetadata {
   summary: string;
   tags: string[];
   created_at: Date;
+  is_published: Boolean;
 }
 
 export interface Post extends PostMetadata {

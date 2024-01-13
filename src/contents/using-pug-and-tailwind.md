@@ -4,6 +4,7 @@ title: Pug와 TailwindCSS를 선택한 이유, 그리고 트러블슈팅
 summary: 둘은 잘못된 만남?
 tags: ["blog", "Pug", "TailwindCSS"]
 created_at: 2024-01-09T14:19:35.595Z
+is_published: true
 ---
 
 > 우선 현재 블로그의 스타일링에 사용하고 있는 기술 스택을 살펴봅니다.

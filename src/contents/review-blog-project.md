@@ -4,6 +4,7 @@ title: 깃허브 블로그 만든 후기
 summary: 번들러 없이 블로그를 만들었습니다.
 tags: ["blog"]
 created_at: 2024-01-05T11:15:09.059Z
+is_published: true
 ---
 
 > 이번 프로젝트의 중점 사항은 *프레임워크 없이 개발하기* 였습니다.

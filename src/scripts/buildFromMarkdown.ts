@@ -1,4 +1,4 @@
-import { mkdir, readdir, writeFile } from "fs/promises";
+import { mkdir, readdir, rmdir, writeFile } from "fs/promises";
 import { renderHtmlFromMarkdown } from "./renderHtmlFromMarkdown";
 import config from "../config";
 
@@ -8,8 +8,15 @@ export async function buildFromMarkdown(path: string) {
   const files = await readdir(path);
   for (const file of files) {
     const dirName = file.split(".md")[0];
-    await mkdir(`${DOCS}/${POSTS}/${dirName}`);
-    const html = await renderHtmlFromMarkdown(`${path}/${file}`);
+    const dirPath = `${DOCS}/${POSTS}/${dirName}`;
+    await mkdir(dirPath);
+    const { isPublished, html } = await renderHtmlFromMarkdown(
+      `${path}/${file}`
+    );
+    if (!isPublished) {
+      await rmdir(dirPath);
+      return;
+    }
     await writeFile(`${DOCS}/${POSTS}/${dirName}/index.html`, html);
   }
 }
