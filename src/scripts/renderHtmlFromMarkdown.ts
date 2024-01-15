@@ -23,13 +23,16 @@ export async function renderHtmlFromMarkdown(
   const createPostHtml = pug.compile(templateFile.toString(), {
     filename: templateFilePath,
   });
-  return createPostHtml({
-    post,
-    site: {
-      title: `${post.title} - Ben의 기술 블로그`,
-      title_for_sharing: `${post.title}`,
-      description: post.summary,
-      url: `https://benkim077.github.io/${post.slug}`,
-    },
-  });
+  return {
+    isPublished: post.is_published,
+    html: createPostHtml({
+      post,
+      site: {
+        title: `${post.title} - Ben의 기술 블로그`,
+        title_for_sharing: `${post.title}`,
+        description: post.summary,
+        url: `https://benkim077.github.io/${post.slug}`,
+      },
+    }),
+  };
 }

@@ -4,6 +4,7 @@ title: nvm에서 asdf로 갈아탄 후기
 summary: asdf의 장점은 무엇일까요?
 tags: ["asdf", "nodejs", "yarn"]
 created_at: 2024-01-11T10:19:37.725Z
+is_published: true
 ---
 
 여러 Nodejs 버전을 사용할 때 nvm으로 쉽게 버전을 변경할 수 있습니다. 
