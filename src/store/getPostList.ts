@@ -8,10 +8,10 @@ export default async function getPostList(path: string) {
   );
   const metas = await Promise.all(metadatasPromise);
 
-  metas.sort((a, b) => {
+  const publishedPost = metas.filter((meta) => meta.is_published);
+  const sortedPost = publishedPost.sort((a, b) => {
     return -(a.created_at.getTime() - b.created_at.getTime());
   });
-  const sortedPost = metas;
   return {
     posts: sortedPost,
   };
