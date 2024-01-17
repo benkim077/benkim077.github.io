@@ -15,7 +15,7 @@ export async function buildFromMarkdown(path: string) {
     );
     if (!isPublished) {
       await rmdir(dirPath);
-      return;
+      continue;
     }
     await writeFile(`${DOCS}/${POSTS}/${dirName}/index.html`, html);
   }
