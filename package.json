@@ -3,7 +3,7 @@
   "packageManager": "yarn@4.0.2",
   "type": "commonjs",
   "scripts": {
-    "build": "rm -rf docs && yarn ts-node src/build.ts && yarn tailwindcss -i ./src/assets/style.css -o ./docs/style.css",
+    "build": "rm -rf docs && yarn ts-node src/build.ts && yarn tailwindcss -i ./src/assets/style.css -o ./docs/style.css -m",
     "dev": "yarn nodemon -w '*' -x 'ts-node' src/app.ts",
     "serve": "yarn static-server docs",
     "test": "jest"
