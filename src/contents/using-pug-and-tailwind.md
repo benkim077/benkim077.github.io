@@ -58,13 +58,14 @@ html.bg-background-dark.text-font-white(lang="ko-KR")
 # 트러블 슈팅
 ## 1\. IntelliSense Extension 사용 시 추가 설정이 필요
 TailwindCSS에선 다양한 편의 기능을 IDE Extension 형태로 제공한다. 
-자동완성, 미리보기 기능 등을 [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)를 통해 활성화할 수 있다.
+자동완성, 린팅, 미리보기 기능을 [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)를 통해 활성화할 수 있다.
 ### Extension 제한 해결하기
 Pug 파일도 이 Extension이 적용된다. 하지만 Emmet을 사용할 때(`div.border-b`)는 자동완성이 되지 않고, `div(class="border-b")` 이런 형식으로 코드를 작성해야 자동완성을 활용할 수 있다. *즉, 간결한 코드가 장점인 Pug을 제대로 활용할 수 없다는 점이다.* 이런 제한을 해제하기 위해서, [Tailwind / Emmet Completions 옵션](https://github.com/tailwindlabs/tailwindcss-intellisense?tab=readme-ov-file#tailwindcssemmetcompletions)을 true로 설정해야 한다.
 
 하지만 이 설정을 활성화하면, markdown 파일에서 `.` 을 입력할 시 자동완성이 뜨는 문제가 있었다. 이를 해결하기 위해서 [Tailwind / File / Exclude 옵션](https://github.com/tailwindlabs/tailwindcss-intellisense?tab=readme-ov-file#tailwindcssfilesexclude)에 `**/*.md` 를 추가해 주었다.
 
-이제 Pug에서 Tailwind를 사용하는 데 아무런 문제가 없다. 
+이제 Pug에서 Tailwind 클래스의 자동완성을 사용할 수 있다. 다만 extensions의 다른 기능(린팅, 미리보기)은 여전히 사용하지 못한다.
+
 ### Pug와 Tailwind의 상성 평가
 Pug에서 Tailwind Extension을 사용하기 위해 추가 설정을 해줘야 하는 부분이 아쉽다. HTML 파일 기반의 템플릿 엔진을 사용했다면, 아마 이런 설정이 있는 줄도 몰랐을 것이다.
 
