@@ -22,7 +22,7 @@ export default function convertFromMarkdownToHtml(content: string) {
   const converter = new Showdown.Converter({
     headerLevelStart: 3,
     extensions: [...bindings],
-    noHeaderId: true,
+    ghCompatibleHeaderId: true,
     strikethrough: true,
   });
   return converter.makeHtml(content);
