@@ -5,7 +5,7 @@
   <p class="my-3">블로그 구축 과정에서 겪은 문제점들과 배운 점들을 공유해보려고 한다.</p>
 </blockquote>
 <p class="my-3">블로그 프로젝트 소스코드는 <a href="https://github.com/benkim077/benkim077.github.io/">제 깃허브</a>에서 확인할 수 있습니다.</p>
-<h3 class="text-4xl font-bold my-1">MVP 구현 달성도</h3>
+<h3 class="text-4xl font-bold my-1"  id="mvp-구현-달성도">MVP 구현 달성도</h3>
 <p class="my-3">빠르게 MVP를 만드는 것이 목표 중 하나였습니다.
 오늘(2024년 1월 5일 금요일)을 데드라인으로 설정하고 9일 동안 작업해서 완료했네요.</p>
 <p class="my-3">MVP : 블로그는 다음 기능을 수행할 수 있어야 한다.</p>
@@ -19,8 +19,8 @@
 </ul>
 <p class="my-3">마지막 단계를 제외한 기능은 모두 구현하였습니다.
 앞으로 포스트를 열심히 작성하고 SEO를 향상시켜야 할 것 같네요.</p>
-<h3 class="text-4xl font-bold my-1">잘못된 방향 : SSR을 구현하려고 했지만…</h3>
-<h4 class="text-3xl font-bold my-1">최초 구현 방식</h4>
+<h3 class="text-4xl font-bold my-1"  id="잘못된-방향--ssr을-구현하려고-했지만">잘못된 방향 : SSR을 구현하려고 했지만…</h3>
+<h4 class="text-3xl font-bold my-1"  id="최초-구현-방식">최초 구현 방식</h4>
 <p class="my-3">처음에는 <em class="text-[#ff82b2]">SSR로 구현</em>된 블로그를 목표로 프로젝트를 시작했고, Express를 이용해서 서버를 구현했었습니다.
 이 서버는 페이지의 html 파일을 리턴하는 웹서버입니다.</p>
 <p class="my-3">서버는 다음 순서대로 동작합니다.</p>
@@ -29,7 +29,7 @@
 <li>요청받은 Path을 이용해서 템플릿 엔진이 HTML을 생성합니다.</li>
 <li>.html 파일을 담아 응답합니다.</li>
 </ol>
-<h4 class="text-3xl font-bold my-1">문제 인식</h4>
+<h4 class="text-3xl font-bold my-1"  id="문제-인식">문제 인식</h4>
 <p class="my-3">하지만 SSR을 구현하는 데에 <em class="text-[#ff82b2]">여러 문제들</em>이 있었습니다.</p>
 <ul class="list-disc list-outside pl-8 my-3">
 <li>블로그에 SSR이 적합한 기술인가?</li>
@@ -39,18 +39,18 @@
 <p class="my-3">이런 이유 때문에 SSR 보다 <em class="text-[#ff82b2]">Static Site Generate 방식이 더 적합</em>하다고 느껴졌습니다. 
 Github Pages는 github.io 도메인을 제공할 뿐만 아니라 정적 파일을 호스팅해줍니다. 
 이제 방향을 전환하지 않을 이유는 없겠죠.</p>
-<h4 class="text-3xl font-bold my-1">SSG로 방식으로 전환</h4>
+<h4 class="text-3xl font-bold my-1"  id="ssg로-방식으로-전환">SSG로 방식으로 전환</h4>
 <p class="my-3">Github Pages는 제가 생성한 정적 파일을 Serving 합니다.</p>
 <p class="my-3">이제 제가 구현해야 할 것은 런타임에서 html 파일을 생성하는 것이 아니고, <em class="text-[#ff82b2]">빌드 타임에서 html 파일을 생성</em>하는 것으로 변경되었습니다. 그리고 html 파일을 Pages가 사용할 수 있도록 전달하면 됩니다.</p>
 <p class="my-3">기존 코드도 내부적으로는 비슷한 로직을 가지고 있었기 때문에 빠르게 구현을 이어나갈 수 있었습니다.</p>
-<h4 class="text-3xl font-bold my-1">dev 서버의 부재</h4>
+<h4 class="text-3xl font-bold my-1"  id="dev-서버의-부재">dev 서버의 부재</h4>
 <p class="my-3">하지만 SSR을 포기하자 <em class="text-[#ff82b2]">개발자 경험이 많이 저하되는 문제</em>도 있었습니다. 
 기존에는 Express와 Nodemon을 이용한 일종의 <em class="text-[#ff82b2]">dev 서버</em>로 개발했었습니다. 작업한 내용이 새로고침하면 바로 적용되어서 편한 부분이 있었습니다. (모던 번들러는 HMR을 지원하기에 더욱 편리하지만)</p>
 <p class="my-3">SSG는 빌드 타임에 생성되는 방식이기 때문에, <em class="text-[#ff82b2]">매번 빌드 스크립트를 돌리고 static server를 돌려서 확인해야하는 불편함</em>이 있었습니다. 번들러가 제공해주는 dev 서버가 많이 그리웠네요. 
 Vite가 제공하는 Hot Module Replacement 기능에 대해 궁금해져 공식 문서를 찾아보기도 했었습니다. 
 다음 목표는 이런 개발 환경을 구축하는 것이 될 수 있겠네요.</p>
-<h3 class="text-4xl font-bold my-1">개선 사항</h3>
-<h4 class="text-3xl font-bold my-1">블로그의 기능 측면</h4>
+<h3 class="text-4xl font-bold my-1"  id="개선-사항">개선 사항</h3>
+<h4 class="text-3xl font-bold my-1"  id="블로그의-기능-측면">블로그의 기능 측면</h4>
 <p class="my-3">(우선순위: *)</p>
 <ul class="list-disc list-outside pl-8 my-3">
 <li>사진 삽입 *</li>
@@ -59,13 +59,13 @@ Vite가 제공하는 Hot Module Replacement 기능에 대해 궁금해져 공식
 <li>노출 횟수 카운팅 (총 방문자, 게시글 조회)</li>
 <li>태그별 포스트 보기</li>
 </ul>
-<h4 class="text-3xl font-bold my-1">DX의 측면</h4>
+<h4 class="text-3xl font-bold my-1"  id="dx의-측면">DX의 측면</h4>
 <ul class="list-disc list-outside pl-8 my-3">
 <li>개발 환경 구축<ul class="list-disc list-outside pl-8 my-3">
 <li>매번 build하는 것이 매우 귀찮았습니다. <em class="text-[#ff82b2]">HMR</em>을 지원하는 <em class="text-[#ff82b2]">dev server</em>를 구현할 수 있다면 정말 편해질 것 같다는 생각을 많이 했네요.</li>
 <li><em class="text-[#ff82b2]">"하나의 로직에 대해 runtime / build 타임에 각각 정적 파일을 빌드할 수 있는 pipe를 어떻게 구현할 수 있을까?"</em> 분명 가능할거라 생각하지만 쉽지 않겠네요.</li></ul></li>
 </ul>
-<h3 class="text-4xl font-bold my-1">무엇을 배웠나?</h3>
+<h3 class="text-4xl font-bold my-1"  id="무엇을-배웠나">무엇을 배웠나?</h3>
 <blockquote class="px-3 text-font-quote my-2 border-l-2 border-[#4d8ce7]">
   <p class="my-3">아래와 같은 것들을 배웠습니다. 
   각 항목들은 추후에 포스팅합니다.</p>

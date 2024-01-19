@@ -2,12 +2,12 @@
   <p class="my-3">우선 현재 블로그의 스타일링에 사용하고 있는 기술 스택을 살펴봅니다.
   그리고 블로그를 스타일링하면서 있었던 문제들을 해결하는 과정을 정리하겠습니다.</p>
 </blockquote>
-<h3 class="text-4xl font-bold my-1">기술 스택 선정 과정</h3>
-<h4 class="text-3xl font-bold my-1">TailwindCSS</h4>
+<h3 class="text-4xl font-bold my-1"  id="기술-스택-선정-과정">기술 스택 선정 과정</h3>
+<h4 class="text-3xl font-bold my-1"  id="tailwindcss">TailwindCSS</h4>
 <p class="my-3">현재 메인 스타일링 도구로 TailwindCSS를 사용하고 있다. 
 Tailwind는 Utility CSS Framework이다. 필요한 스타일을 태그의 class에 부착하면서 사용할 수 있다. 이런 사용성 덕분에 <em class="text-[#ff82b2]">변화에 대응하기 쉽다는 특징</em>을 갖는다. (Tailwind 방식이 주는 이점에 대해서 궁금하다면 <a href="https://tailwindcss.com/docs/utility-first#overview">이 문서</a>를 살펴보세요.)</p>
 <p class="my-3"><em class="text-[#ff82b2]">제품 초기 단계에 디자인 변동이 잦을 것으로 생각했기에</em> Tailwind를 선택했다.</p>
-<h4 class="text-3xl font-bold my-1">Pug</h4>
+<h4 class="text-3xl font-bold my-1"  id="pug">Pug</h4>
 <p class="my-3">Pug는 간결한 문법으로 사용할 수 있는 <strong class="bg-[#ffce0060]">템플릿 엔진</strong>이다. </p>
 <p class="my-3">다음 코드는 블로그의 메인 페이지를 렌더링할 때 사용하는 Pug 코드이다.</p>
 <pre class="bg-[#282c35] p-3 my-2 overflow-auto"><code class="pug language-pug bg-[#282c35] p-1 rounded">doctype html
@@ -35,23 +35,23 @@ html.bg-background-dark.text-font-white(lang="ko-KR")
 <li>+ JavaScript 코드를 실행시킬 수 있다.</li>
 </ul>
 <p class="my-3"><em class="text-[#ff82b2]">HTML 파일을 기반으로 하는 EJS, mustache 같은 템플릿 엔진 보다 간결하고 빠르게 코드를 작성할 수 있을 것으로 생각하여</em> Pug를 선택했다.</p>
-<h4 class="text-3xl font-bold my-1">둘 모두 MVP 구현에 적합</h4>
+<h4 class="text-3xl font-bold my-1"  id="둘-모두-mvp-구현에-적합">둘 모두 MVP 구현에 적합</h4>
 <p class="my-3"><em class="text-[#ff82b2]">Tailwind, Pug 둘 다 빠르게 MVP를 만들어야 하는 상황에 잘 맞는 기술</em>이라고 생각한다. 
 그래서 둘을 사용해서 HTML, CSS를 렌더링하기로 했다.</p>
 <p class="my-3">하지만 Tailwind, Pug를 함께 사용하면서 문제점이 보이기 시작했다.</p>
-<h3 class="text-4xl font-bold my-1">트러블 슈팅</h3>
-<h4 class="text-3xl font-bold my-1">1. IntelliSense Extension 사용 시 추가 설정이 필요</h4>
+<h3 class="text-4xl font-bold my-1"  id="트러블-슈팅">트러블 슈팅</h3>
+<h4 class="text-3xl font-bold my-1"  id="1-intellisense-extension-사용-시-추가-설정이-필요">1. IntelliSense Extension 사용 시 추가 설정이 필요</h4>
 <p class="my-3">TailwindCSS에선 다양한 편의 기능을 IDE Extension 형태로 제공한다. 
 자동완성, 린팅, 미리보기 기능을 <a href="https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss">Tailwind CSS IntelliSense</a>를 통해 활성화할 수 있다.</p>
-<h5 class="text-2xl font-bold my-1">Extension 제한 해결하기</h5>
+<h5 class="text-2xl font-bold my-1"  id="extension-제한-해결하기">Extension 제한 해결하기</h5>
 <p class="my-3">Pug 파일도 이 Extension이 적용된다. 하지만 Emmet을 사용할 때(<code class=" bg-[#282c35] p-1 rounded">div.border-b</code>)는 자동완성이 되지 않고, <code class=" bg-[#282c35] p-1 rounded">div(class="border-b")</code> 이런 형식으로 코드를 작성해야 자동완성을 활용할 수 있다. <em class="text-[#ff82b2]">즉, 간결한 코드가 장점인 Pug을 제대로 활용할 수 없다는 점이다.</em> 이런 제한을 해제하기 위해서, <a href="https://github.com/tailwindlabs/tailwindcss-intellisense?tab=readme-ov-file#tailwindcssemmetcompletions">Tailwind / Emmet Completions 옵션</a>을 true로 설정해야 한다.</p>
 <p class="my-3">하지만 이 설정을 활성화하면, markdown 파일에서 <code class=" bg-[#282c35] p-1 rounded">.</code> 을 입력할 시 자동완성이 뜨는 문제가 있었다. 이를 해결하기 위해서 <a href="https://github.com/tailwindlabs/tailwindcss-intellisense?tab=readme-ov-file#tailwindcssfilesexclude">Tailwind / File / Exclude 옵션</a>에 <code class=" bg-[#282c35] p-1 rounded">**/*.md</code> 를 추가해 주었다.</p>
 <p class="my-3">이제 Pug에서 Tailwind 클래스의 자동완성을 사용할 수 있다. 다만 extensions의 다른 기능(린팅, 미리보기)은 여전히 사용하지 못한다.</p>
-<h5 class="text-2xl font-bold my-1">Pug와 Tailwind의 상성 평가</h5>
+<h5 class="text-2xl font-bold my-1"  id="pug와-tailwind의-상성-평가">Pug와 Tailwind의 상성 평가</h5>
 <p class="my-3">Pug에서 Tailwind Extension을 사용하기 위해 추가 설정을 해줘야 하는 부분이 아쉽다. HTML 파일 기반의 템플릿 엔진을 사용했다면, 아마 이런 설정이 있는 줄도 몰랐을 것이다.</p>
 <p class="my-3"><em class="text-[#ff82b2]">약간의 설정을 통해 Pug가 제공하는 간결한 코드의 장점은 여전히 발휘할 수 있다. 하지만 결과적으로 Pug가 Tailwind와 딱 맞는 퍼즐 조각은 아니라는 생각이 들었다. HTML 파일을 사용하는 템플릿 엔진이 Tailwind와 더 적합하다고 볼 수 있다.</em></p>
-<h4 class="text-3xl font-bold my-1">2. CSS 코드 관리의 어려움</h4>
-<h5 class="text-2xl font-bold my-1">기존에 사용하던 방식과 한계</h5>
+<h4 class="text-3xl font-bold my-1"  id="2-css-코드-관리의-어려움">2. CSS 코드 관리의 어려움</h4>
+<h5 class="text-2xl font-bold my-1"  id="기존에-사용하던-방식과-한계">기존에 사용하던 방식과 한계</h5>
 <p class="my-3">CSS 관련 코드가 있는 장소는 2곳이다.</p>
 <ul class="list-disc list-outside pl-8 my-3">
 <li>Pug 파일의 utility class</li>
@@ -59,7 +59,7 @@ html.bg-background-dark.text-font-white(lang="ko-KR")
 </ul>
 <p class="my-3"><code class=" bg-[#282c35] p-1 rounded">body, #wrapper</code> 등 여러 템플릿 파일에서 공통으로 사용하는 부분과 <code class=" bg-[#282c35] p-1 rounded">&lt;a&gt;</code> 등 공통으로 사용되는 스타일은 style.css에 작성하고, 대부분은 utility class를 사용한다.</p>
 <p class="my-3">다만 블로그 포스트에 대한 CSS도 style.css에 포함하게 되었다. <em class="text-[#ff82b2]">그 이유는 포스트를 markdown으로 작성한 뒤에 HTML로 변환되기 때문이다.</em> Markdown을 HTML로 변환해주는 역할은 <a href="https://showdownjs.com/">Showdown 라이브러리</a>가 담당한다.</p>
-<h6 class="text-xl font-bold my-1">Showdown의 역할 살펴보기</h6>
+<h6 class="text-xl font-bold my-1"  id="showdown의-역할-살펴보기">Showdown의 역할 살펴보기</h6>
 <p class="my-3">Showdown은 markdown을 입력받고, HTML을 출력한다.</p>
 <pre class="bg-[#282c35] p-3 my-2 overflow-auto"><code class="markdown language-markdown bg-[#282c35] p-1 rounded">&lt;!-- Markdown Input  --&gt;
 ## 최초 구현 방식
@@ -82,7 +82,7 @@ html.bg-background-dark.text-font-white(lang="ko-KR")
     &lt;li&gt;.html 파일을 담아 응답합니다.&lt;/li&gt;
 &lt;/ol&gt;
 </code></pre>
-<h6 class="text-xl font-bold my-1">Showdown의 한계</h6>
+<h6 class="text-xl font-bold my-1"  id="showdown의-한계">Showdown의 한계</h6>
 <p class="my-3">이렇게 markdown에서 생성된 HTML을 Pug에 전달하여 최종 HTML 파일을 생성하게 된다.
 다만 HTML Tag만 생성하는 바람에 스타일은 전혀 없었다. 그래서 style.css 파일에 descendant selector를 이용해서 스타일을 처리하였다.</p>
 <pre class="bg-[#282c35] p-3 my-2 overflow-auto"><code class="css language-css bg-[#282c35] p-1 rounded">/* id="post" 를 부여하고 내부 태그만 따로 스타일링해주었다. */
@@ -97,7 +97,7 @@ h3 {
 </code></pre>
 <p class="my-3">하지만 <em class="text-[#ff82b2]">코드가 여러 군데에 맥락없이 분리</em>되어 CSS 코드를 찾기 어려워졌고, 요구사항에 기민하게 대응하기 어려워졌다. </p>
 <p class="my-3">구체적으로는 <em class="text-[#ff82b2]">Inline style, selector, utiltity class 가 혼용되어 CSS 우선순위를 파악하기 어려운 문제</em>가 있었고, 결국 코드가 의도대로 작동하지 않았다.</p>
-<h5 class="text-2xl font-bold my-1">해결 방법</h5>
+<h5 class="text-2xl font-bold my-1"  id="해결-방법">해결 방법</h5>
 <p class="my-3"><em class="text-[#ff82b2]">이를 해결하기 위해 inline style, selector는 최소화하고, utility class를 최대한 활용하는 방법을 고민</em>하기 시작했다.
 <em class="text-[#ff82b2]">결국 post에서 생성된 html에 utility class를 붙여야 해결될 문제</em>였다. </p>
 <p class="my-3">이것을 구현하기 위해서 여러 방법들을 고민했다. 그리고 마지막 방법을 선택했다.</p>
@@ -167,7 +167,7 @@ utlility 클래스가 생성된 것을 확인할 수 있다.</p>
     &lt;li&gt;.html 파일을 담아 응답합니다.&lt;/li&gt;
 &lt;/ol&gt;
 </code></pre>
-<h5 class="text-2xl font-bold my-1">한계점</h5>
+<h5 class="text-2xl font-bold my-1"  id="한계점">한계점</h5>
 <p class="my-3">특정 경우에 대해 이 프로세스로 해결할 수 없었다.
 예를 들면 <code class=" bg-[#282c35] p-1 rounded">&lt;p&gt;</code>, <code class=" bg-[#282c35] p-1 rounded">&lt;ol&gt;</code>, <code class=" bg-[#282c35] p-1 rounded">&lt;ul&gt;</code> 바로 뒤에 <code class=" bg-[#282c35] p-1 rounded">&lt;h&gt;</code> 태그가 오는 경우에 문서의 가독성을 위해 적당한 간격이 필요했다. </p>
 <p class="my-3">이 경우는 태그의 관계에 의한 스타일링이기 때문에, 선택자로 코딩할 수밖에 없다. 아래와 같이 처리해줬다.</p>
@@ -178,13 +178,13 @@ ul + h3 {
   @apply pt-4
 }
 </code></pre>
-<h3 class="text-4xl font-bold my-1">마무리</h3>
+<h3 class="text-4xl font-bold my-1"  id="마무리">마무리</h3>
 <ul class="list-disc list-outside pl-8 my-3">
 <li>Pug, Tailwind를 선택한 이유, 그리고 마주한 여러 문제들에 대해 살펴봤습니다.</li>
 <li>첫 번째 문제를 해결하면서 Pug, Tailwind를 함께 사용하기 위해 필요한 추가 설정들을 알아봤습니다.</li>
 <li>두 번째 문제를 해결하면서 HTML, Style Code가 순차적으로 생성되는 과정을 되돌아봤습니다. 결과적으로 전체 프로세스 내에서 각 절차에 맞는 코드가 생성되도록 만들어냈습니다.</li>
 </ul>
-<h3 class="text-4xl font-bold my-1">Read More</h3>
+<h3 class="text-4xl font-bold my-1"  id="read-more">Read More</h3>
 <ul class="list-disc list-outside pl-8 my-3">
 <li><a href="https://github.com/benkim077/benkim077.github.io/issues/8">Github 이슈</a>에서 해결 과정을 살펴보세요.</li>
 </ul></main></article></main><footer class="py-3 border-t mt-3 text-gray-400"><p>ⓒ 2024 Ben Kim</p></footer></div></body></html>

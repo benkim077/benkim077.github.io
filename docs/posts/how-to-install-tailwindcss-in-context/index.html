@@ -1,0 +1,167 @@
+<!DOCTYPE html><html class="bg-background-dark text-font-white" lang="ko-KR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>상황에 맞게 TailwindCSS를 설치하는 방법 - Ben의 기술 블로그</title><meta name="Description" content="Tailwind 설치 가이드를 살펴봅시다"><meta property="og:image"><meta property="og:title" content="상황에 맞게 TailwindCSS를 설치하는 방법"><meta property="og:description" content="Tailwind 설치 가이드를 살펴봅시다"><meta property="og:url" content="https://benkim077.github.io/how-to-install-tailwindcss-in-context"><meta property="og:locale" content="ko_KR"><meta property="og:site_name" content="Ben의 기술 블로그"><meta property="og:type" content="website"><link href="/style.css" rel="stylesheet"></head><body><div id="wrapper"><header class="py-5"><h1 class="text-3xl font-bold">Ben의 기술 블로그</h1><nav><ul class="text-xl font-medium flex gap-4 list-none"><li><a href="/">About</a></li><li><a href="/posts">Posts</a></li></ul></nav></header><main class="mb-auto"><article><header class="border-b py-1 border-gray-400"><h2 class="text-5xl font-bold">상황에 맞게 TailwindCSS를 설치하는 방법</h2><div class="flex flex-row text-gray-400 gap-6"><time datetime="2024-01-19T02:46:57.621Z">2024년 1월 19일 금요일</time><ul class="flex flex-row gap-3"><li>#TailwindCSS</li><li>#PostCSS</li></ul></div></header><main class="pt-8"><p class="my-3">이번 포스팅에서는 Tailwind CSS의 <a href="https://tailwindcss.com/docs/installation">설치 가이드 문서</a>에 대해서 다루려고 합니다. </p>
+<p class="my-3">설치 가이드는 크게 4가지 방법을 제안하고 있습니다. 각 방법에 대해 구체적으로 살펴보면서, 어떤 방법을 선택하는게 좋을지 알아보겠습니다. 
+이 포스트가 상황별 설치법 가이드가 될 수 있었으면 좋겠네요.
+(이미 다양한 상황에 맞춰 가이드가 잘 작성되어 있기 때문에 구체적인 설치 방법에 대해서 언급하진 않겠습니다.)</p>
+<blockquote class="px-3 text-font-quote my-2 border-l-2 border-[#4d8ce7]">
+  <p class="my-3">포스트를 통해 얻을 수 있는 것</p>
+  <ol class="list-decimal list-outside pl-8 my-3">
+  <li>PostCSS의 개념, Tailwind 빌드 로직에 대한 이해</li>
+  <li>Nodejs 없이 Tailwind를 사용하는 방법</li>
+  <li>CDN 방식의 문제점과 빌드 프로세스의 필요성을 이해</li>
+  <li>본인의 상황에 맞게 Tailwind를 설치할 수 있는 능력</li>
+  </ol>
+</blockquote>
+<p class="my-3">각 방법의 설명 순서는 임의로 진행합니다. </p>
+<h3 class="text-4xl font-bold my-1"  id="framework-guides">Framework Guides</h3>
+<p class="my-3">처음으로 살펴볼 방식은 '프레임워크 가이드'입니다. 여러 인기 환경에서 Tailwind를 사용할 수 있는 방법을 제공합니다. 
+가장 간단하면서 공식적인 방법이기 때문에 Vite, CRA, Next.js 등 대부분의 환경에서 이 가이드를 따라가면 쉽게 설치가 가능합니다.</p>
+<p class="my-3">각 환경에서 사용하고 있는 방식을 잠시 살펴봅시다. 대부분의 환경에서 다음 순서를 따릅니다.</p>
+<ol class="list-decimal list-outside pl-8 my-3">
+<li>의존성을 설치합니다. <code class=" bg-[#282c35] p-1 rounded">npm install -D tailwindcss postcss autoprefixer</code></li>
+<li>Config를 설정합니다. </li>
+</ol>
+<p class="my-3"><em class="text-[#ff82b2]">대부분의 환경에서 PostCSS를 이용하고 있는 것으로 보아, 다음에 살펴볼 방식인 'Using PostCSS'과 같은 방식을 사용하는 것을 알 수 있습니다.</em></p>
+<p class="my-3">그러면 PostCSS를 이용하는 방식을 살펴봅시다.</p>
+<h3 class="text-4xl font-bold my-1"  id="using-postcss">Using PostCSS</h3>
+<blockquote class="px-3 text-font-quote my-2 border-l-2 border-[#4d8ce7]">
+  <p class="my-3"><em class="text-[#ff82b2]">PostCSS 플러그인으로 Tailwind를 설치</em>하는 방법
+  빌드 도구(webpack, Rollup, Vite, Parcel 등)와 가장 원활하게 통합된다.</p>
+</blockquote>
+<p class="my-3">"PostCSS의 플러그인 Tailwind"가 무슨 의미일까요? 
+이를 이해하기 위해 잠시 PostCSS에 대해 알아봅시다.</p>
+<p class="my-3">간단하게 설명하자면, <em class="text-[#ff82b2]">PostCSS는 CSS를 파싱하고 처리 후 CSS 코드를 반환하는 JavaScript</em>입니다.
+PostCSS는 다음 순서로 동작하게 됩니다.</p>
+<ol class="list-decimal list-outside pl-8 my-3">
+<li>CSS를 Abstract Syntax Tree로 <em class="text-[#ff82b2]">파싱</em></li>
+<li>AST를 <em class="text-[#ff82b2]">Plugin에 전달</em><ul class="list-disc list-outside pl-8 my-3">
+<li>Plugin은 <em class="text-[#ff82b2]">임의의 작업</em>을 수행합니다.</li></ul></li>
+<li>AST를 문자열로 변환하여 파일로 <em class="text-[#ff82b2]">출력</em></li>
+</ol>
+<p class="my-3"><em class="text-[#ff82b2]">Tailwind는 AST를 전달받고 임의의 작업을 수행한 후 CSS 파일을 출력할 것이라고 예상</em>할 수 있습니다. 
+이를 참고해서 PostCSS의 플러그인으로써 Tailwind의 작동 방식을 살펴봅시다.</p>
+<h4 class="text-3xl font-bold my-1"  id="tailwind-작동-방식">Tailwind 작동 방식</h4>
+<p class="my-3">예시 코드와 함께 Tailwind의 작동 방식을 살펴보겠습니다. 
+(프로젝트 세팅은 <a href="https://github.com/benkim077/tailwind-parsing">깃허브</a>를 참고하세요.)</p>
+<ol class="list-decimal list-outside pl-8 my-3">
+<li>파일을 읽고 사용된 유틸리티 클래스를 <em class="text-[#ff82b2]">탐색(파싱)</em> 합니다.</li>
+</ol>
+<p class="my-3">1.1 HTML 에서 사용된 tailwind 클래스를 탐색</p>
+<pre class="bg-[#282c35] p-3 my-2 overflow-auto"><code class="html language-html bg-[#282c35] p-1 rounded">&lt;!-- index.html --&gt;
+&lt;head&gt;
+    &lt;link href="./style.css" rel="stylesheet" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- text-3xl font-bold 클래스를 찾았습니다. --&gt;
+    &lt;h1 class="text-3xl font-bold"&gt;Hello world!&lt;/h1&gt; 
+    &lt;button&gt;draw underline&lt;/button&gt;
+    &lt;script src="./main.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+<p class="my-3">1.2 JavaScript 에서 사용된 tailwind 클래스를 탐색</p>
+<pre class="bg-[#282c35] p-3 my-2 overflow-auto"><code class="js language-js bg-[#282c35] p-1 rounded">// main.js
+const heading = document.querySelector("h1");
+const button = document.querySelector("button");
+button.onclick = attachClass;
+
+function attachClass() {
+    // underline 클래스를 찾았습니다.
+    heading.classList.add("underline");
+}
+</code></pre>
+<ol class="list-decimal list-outside pl-8 my-3"  start="2">
+<li>탐색한 <em class="text-[#ff82b2]">클래스를 선언(임의의 작업)</em> 합니다.</li>
+<li>CSS 파일을 <em class="text-[#ff82b2]">생성(출력)</em> 합니다.</li>
+</ol>
+<pre class="bg-[#282c35] p-3 my-2 overflow-auto"><code class="css language-css bg-[#282c35] p-1 rounded">/* style.css */
+
+/* index.html에서 가져온 클래스 */
+.text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+/* main.js에서 가져온 클래스 */
+.underline {
+    text-decoration-line: underline;
+}
+</code></pre>
+<p class="my-3">CSS 결과물을 잘 출력한 모습입니다.
+재밌는 것은 HTML 파일 뿐만 아니라, JavaScript 파일을 읽으며 클래스를 찾아왔네요. (Tailwind가 유틸리티 클래스를 탐색하는 방법이 궁금하다면 <a href="https://tailwindcss.com/docs/content-configuration#class-detection-in-depth">링크</a>를 참고하세요)</p>
+<p class="my-3">결론:
+<strong class="bg-[#ffce0060]">PostCSS 방식을 사용하면, 사용된 Tailwind 클래스를 포함하는 작은 크기의 css 파일을 빌드 시점에 생성할 수 있습니다.</strong></p>
+<h3 class="text-4xl font-bold my-1"  id="tailwind-cli">Tailwind CLI</h3>
+<p class="my-3">세 번째 방법은 Tailwind CLI을 이용하는 것입니다. </p>
+<blockquote class="px-3 text-font-quote my-2 border-l-2 border-[#4d8ce7]">
+  <p class="my-3"><em class="text-[#ff82b2]">Node.js 없이 <a href="https://tailwindcss.com/blog/standalone-cli">standalone excutable</a>로 Tailwind를 사용하고 싶다면</em> 이용가능한 방법</p>
+</blockquote>
+<p class="my-3">어떻게 독립적으로 실행할 수 있을까요? 링크의 내용을 살펴봅시다.</p>
+<blockquote class="px-3 text-font-quote my-2 border-l-2 border-[#4d8ce7]">
+  <p class="my-3">Tailwind는 <em class="text-[#ff82b2]">JavaScript로 작성된 npm 패키지</em>입니다. 이를 사용하려면 <em class="text-[#ff82b2]">Nodejs가 필요</em>합니다.
+  하지만 npm을 사용하지 않는 프로젝트에서도 Tailwind를 사용할 수 있는 방법이 필요합니다.
+  이를 가능하게 하는 것은 Vercel의 pkg입니다. pkg는 Nodejs 설치 없이 실행가능하도록 <em class="text-[#ff82b2]">Nodejs 프로젝트를 실행 파일 자체에 번들링</em>합니다.</p>
+</blockquote>
+<p class="my-3">Nodejs 프로젝트를 실행 파일에 번들링함으로써 Nodejs 없이도 Tailwind를 사용할 수 있는 것이네요. 신기합니다. 한편 Tailwind가 JavaScript로 작성된 npm 패키지일 뿐이라는 점도 알게 됐네요.</p>
+<p class="my-3">결론:
+<strong class="bg-[#ffce0060]">Nodejs를 사용하지 않는 프로젝트라면 Tailwind CLI 방식을 사용</strong>하면 되겠습니다.</p>
+<h3 class="text-4xl font-bold my-1"  id="play-cdn">Play CDN</h3>
+<p class="my-3">마지막 설치 방법으로 CDN을 이용할 수 있습니다.</p>
+<blockquote class="px-3 text-font-quote my-2 border-l-2 border-[#4d8ce7]">
+  <p class="my-3">빌드 과정 없이 브라우저에서 Tailwind를 바로 사용할 수 있는 방법
+  Development 목적으로 사용되도록 설계, production용으로 최고의 선택은 아니다.</p>
+</blockquote>
+<p class="my-3">왜 이 방식을 production 용으로 사용하면 안 될까요?</p>
+<h4 class="text-3xl font-bold my-1"  id="cdn-방식-직접-사용해보기">CDN 방식 직접 사용해보기</h4>
+<p class="my-3">직접 확인해봅시다. 간단한 HTML 코드에 Tailwind CDN을 추가합니다. </p>
+<pre class="bg-[#282c35] p-3 my-2 overflow-auto"><code class="html language-html bg-[#282c35] p-1 rounded">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+    &lt;!-- CDN 추가 --&gt;
+    &lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;!-- Tailwind 클래스 부착 --&gt;
+    &lt;h1 class="text-3xl font-bold underline"&gt;Hello world!&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p class="my-3">이제 이 코드를 브라우저에서 실행시키고 네트워크 탭을 확인해봅시다.</p>
+<p class="my-3"><img class="px-4 pt-4 pb-1"  src="/assets/images/download-tailwind-from-cdn.png" alt="3.4.1 파일을 다운받았다." /><em class="text-[#ff82b2]">3.4.1 파일을 다운받았습니다.</em></p>
+<p class="my-3">cdn.tailwindcss.com 에서 3.4.1 파일을 가져왔음을 알 수 있습니다.</p>
+<ul class="list-disc list-outside pl-8 my-3">
+<li>JavaScript 파일<ul class="list-disc list-outside pl-8 my-3">
+<li>앞에서 말했던 "Tailwind는 JavaScript로 작성된 패키지"라는 사실을 확인할 수 있네요.</li></ul></li>
+<li>큰 용량의 파일 (111KB)</li>
+</ul>
+<p class="my-3">정리하면 CDN에서 가져오는 것은 JavaScript 파일이고, 이 스크립트가 HTML 에서 클래스를 읽어 스타일을 생성해주고 있는 것입니다. Element 탭을 확인해보면 생성된 스타일 코드를 확인할 수 있습니다.</p>
+<p class="my-3"><img class="px-4 pt-4 pb-1"  src="/assets/images/class-made-by-tailwind.png" alt="클래스가 선언된 모습" /><em class="text-[#ff82b2]"><code class=" bg-[#282c35] p-1 rounded">&lt;style&gt;</code> 태그에 선언된 클래스를 받아옵니다.</em></p>
+<p class="my-3"><img class="px-4 pt-4 pb-1"  src="/assets/images/generated-code-in-the-style-tag.png" alt="style 태그에 생성된 코드" /><em class="text-[#ff82b2]"><code class=" bg-[#282c35] p-1 rounded">&lt;style&gt;</code> 태그에 CSS 코드가 생성됐네요.</em></p>
+<p class="my-3">이렇게 생성된 CSS 코드의 용량은 5KB 정도입니다. 또한 style 코드 하단부에 유틸리티 클래스가 선언됐음을 확인할 수 있습니다. </p>
+<p class="my-3">(참고: CDN을 사용하면 HTML에 포함된 script를 읽고 클래스를 미리 생성할 수 없습니다. PostCSS에서 사용한 코드처럼 <code class=" bg-[#282c35] p-1 rounded">classList.add</code>로 클래스를 부착하면 변경된 HTML을 읽고 런타임에서 CSS 클래스를 생성합니다. 이를 통해 CDN의 Tailwind는 <code class=" bg-[#282c35] p-1 rounded">--watch</code> 옵션으로 실행되는 것을 알 수 있네요.)</p>
+<h4 class="text-3xl font-bold my-1"  id="cdn-방식을-지양해야-하는-이유">CDN 방식을 지양해야 하는 이유</h4>
+<p class="my-3">CDN 방식의 특징을 정리해봅시다.</p>
+<ol class="list-decimal list-outside pl-8 my-3">
+<li>네트워크 사용량 증가<ul class="list-disc list-outside pl-8 my-3">
+<li>CDN 방식은 큰 .js 파일(111KB)을 다운받습니다. </li>
+<li><em class="text-[#ff82b2]">완성된 CSS 파일만 다운받는다면 5KB에 그칩니다.</em></li></ul></li>
+<li>런타임에서 스타일 코드 생성 로직이 실행<ul class="list-disc list-outside pl-8 my-3">
+<li>다운받은 .js 파일이 실행되고 결과물인 CSS 코드는 <code class=" bg-[#282c35] p-1 rounded">&lt;style&gt;</code> 에 저장됩니다.</li>
+<li><em class="text-[#ff82b2]">빌드 타임에 미리 CSS 코드를 생성한다면 더 빠르게 렌더링이 가능합니다.</em></li></ul></li>
+</ol>
+<p class="my-3">결론:
+<strong class="bg-[#ffce0060]">이런 특징 때문에 프로덕션 환경에서 CDN 사용을 지양해야 합니다.</strong> 위에서 설명한 다른 방법들을 사용하면 빌드 프로세스에서 미리 CSS 파일을 생성해주기 때문에 네트워크 트래픽을 감소시킬 수 있을 겁니다.</p>
+<h3 class="text-4xl font-bold my-1"  id="마무리">마무리</h3>
+<p class="my-3">항상 설치 가이드는 무지성으로 따라가기만 했던 부분이었는데, 이번에 Tailwind CSS 문서를 주의깊게 읽어보고 정리해봤습니다.</p>
+<p class="my-3">PostCSS가 무엇인지 알게 됐고, Vercel의 pkg 같은 기술이 있다는 것을 접할 수 있었습니다. 또한 CDN을 지양해야 하는 이유를 눈으로 직접 확인할 수 있었습니다.</p>
+<h3 class="text-4xl font-bold my-1"  id="read-more">Read More</h3>
+<p class="my-3">PostCSS에 대해 궁금하다면:</p>
+<ul class="list-disc list-outside pl-8 my-3">
+<li><a href="https://davidtheclark.com/its-time-for-everyone-to-learn-about-postcss/">It's Time for Everyone to Learn About PostCSS - What It Really Is; What It Really Does</a></li>
+<li><a href="https://www.julian.io/articles/postcss.html">Some things you may think about PostCSS… and you might be wrong</a></li>
+</ul></main></article></main><footer class="py-3 border-t mt-3 text-gray-400"><p>ⓒ 2024 Ben Kim</p></footer></div></body></html>
