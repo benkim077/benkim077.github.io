@@ -13,5 +13,8 @@ html.bg-background-dark.text-font-white(lang="ko-KR")
               ul.flex.flex-row.gap-3
                 each tag in post.tags 
                   li= `#${tag}`
-          main.pt-8 !{post.content}
+          main.py-8 !{post.content}
+          footer
+            div.giscus
+            include includes/giscus.pug
       include includes/footer.pug
