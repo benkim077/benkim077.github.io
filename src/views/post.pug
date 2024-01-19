@@ -14,4 +14,7 @@ html.bg-background-dark.text-font-white(lang="ko-KR")
                 each tag in post.tags 
                   li= `#${tag}`
           main.pt-8 !{post.content}
+          footer
+            div.giscus
+            include includes/giscus.pug
       include includes/footer.pug
