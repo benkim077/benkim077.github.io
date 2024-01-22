@@ -1,5 +1,5 @@
 import { describe, test, expect } from "@jest/globals";
-import getClassNameFromHtmlClassAttribute from "../utility/getClassNameFromHtmlAttribute";
+import getClassNameFromHtmlClassAttribute from "../src/utility/getClassNameFromHtmlAttribute";
 
 describe("getClassNameFromHtmlClassAttribute", () => {
   test("Markdown Code Language Classes", () => {
